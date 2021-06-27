@@ -3,7 +3,7 @@ name: Deploy automatico
 on:
   workflow_run:
     workflows: ["Integração contínua"]
-    branches: [main]
+    branches: [teste_1]
     types:
       - completed
 
