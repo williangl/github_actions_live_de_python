@@ -23,4 +23,6 @@ jobs:
         run: poetry install
 
       - name: Executa o Black
-        run: poetry run black app --check
+        run: |
+          poetry run black app --check
+          poetry run isort --check app/
