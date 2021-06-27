@@ -27,7 +27,7 @@ jobs:
           poetry run black app --check
           poetry run isort --check app/
 
- executa_pycodestyle:
+  executa_pycodestyle:
       runs-on: ubuntu-latest
       steps:
         - name: Action Checkout
