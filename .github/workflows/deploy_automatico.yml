@@ -2,70 +2,22 @@ name: Deploy automatico
 
 on:
   workflow_run:
+    workflows: ["Integração contínua"]
     branches:
       - main
-    type:
+    types:
       - completed
 
 jobs:
-  executa_linter:
+  deploy_app:
     runs-on: ubuntu-latest
     steps:
       - name: Action Checkout
         uses: actions/checkout@v2
 
-      - name: Instala o Python 3.9
-        uses: actions/setup-python@v2
+      - name: Deploy no Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          python-version: 3.9
-
-      - name: Instala o Poetry
-        uses: Gr1N/setup-poetry@v4
-
-      - name: Instala as Dependências
-        run: poetry install
-
-      - name: Executa o Black e o isort
-        run: |
-          poetry run black app --check
-          poetry run isort --check app/
-
-  executa_pycodestyle:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Action Checkout
-          uses: actions/checkout@v2
-
-        - name: Instala o Python 3.9
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.9
-
-        - name: Instala o Poetry
-          uses: Gr1N/setup-poetry@v4
-
-        - name: Instala as Dependências
-          run: poetry install
-
-        - name: Executa o Pydocstyle
-          run: poetry run pydocstyle app
-
-  executa_unittest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Action Checkout
-        uses: actions/checkout@v2
-
-      - name: Instala o Python 3.9
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-
-      - name: Instala o Poetry
-        uses: Gr1N/setup-poetry@v4
-
-      - name: Instala as Dependências
-        run: poetry install
-
-      - name: Executa Testes Unitários
-        run: poetry run pytest
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "todo-list-live-de-python"
+          heroku_email: "williangldzn@gmail.com"
