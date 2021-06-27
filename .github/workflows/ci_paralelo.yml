@@ -4,7 +4,7 @@ on:
   pull_reuquest:
     branches:
       - main
-  push
+  push:
 
 jobs:
   executa_python_black:
