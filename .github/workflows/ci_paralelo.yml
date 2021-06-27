@@ -19,11 +19,6 @@ jobs:
       - name: Instala o Poetry
         uses: Gr1N/setup-poetry@v4
 
-      - name: Set Poetry config
-        run: |
-          poetry config virtualenvs.create false --local
-          poetry config virtualenvs.path ~/.virtualenvs
-
       - name: Instala as Dependências
         run: poetry install
 
