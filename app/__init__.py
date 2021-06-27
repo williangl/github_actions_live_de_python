@@ -1,8 +1,10 @@
+"""Cria o factory da aplicação."""
+
 from flask import Flask
-# from .calc import soma
 
 
 def create_app():
+    """Cria a aplicação."""
     app = Flask(__name__)
 
     @app.get('/soma/<int:x>/<int:y>')
