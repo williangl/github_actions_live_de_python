@@ -1,0 +1,29 @@
+name: Integração Contínua paralelo
+
+on:
+  pull_reuquest:
+    branches:
+      - main
+  push
+
+jobs:
+  executa_python_black:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Action Checkout
+        uses: Actions/checkout@v2
+
+      - name: Instalar o Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Instala o Poetry
+        uses: Gr1N/setup-poetry@v4
+
+      - name: Instala as dependências
+        run: poetry install
+
+      - name: Executa o Python Black
+        run: poetry run black app --check
