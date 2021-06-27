@@ -1,3 +1,5 @@
+name: Integração contínua
+
 on:
   pull_request:
     branches:
