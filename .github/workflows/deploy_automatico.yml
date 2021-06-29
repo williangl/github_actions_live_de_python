@@ -1,4 +1,4 @@
-name: Deploy manual
+name: Deploy automatizado
 
 on:
   workflow_run:
