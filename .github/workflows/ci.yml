@@ -16,7 +16,7 @@ jobs:
       - name: Instala o Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9.6
+          python-version: 3.9.5
 
       - name: Instala o poetry
         uses: Gr1N/setup-poetry@v4
