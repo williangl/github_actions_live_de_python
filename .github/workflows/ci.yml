@@ -25,13 +25,64 @@ jobs:
         run: poetry install
 
       - name: Excuta o black
-        run: poetry run black app --check 
+        run: poetry run black app --check
+
+  executa_isort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Realiza o checkout
+        uses: actions/checkout@v2
+
+      - name: Instala o Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Instala o poetry
+        uses: Gr1N/setup-poetry@v4
+
+      - name: Instala as dependências
+        run: poetry install
 
       - name: Excuta o isort
         run: poetry run isort --check app
 
+  executa_pydocstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Realiza o checkout
+        uses: actions/checkout@v2
+
+      - name: Instala o Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Instala o poetry
+        uses: Gr1N/setup-poetry@v4
+
+      - name: Instala as dependências
+        run: poetry install
+
       - name: Excuta o pydocstyle
         run: poetry run pydocstyle app
+
+  executa_unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Realiza o checkout
+        uses: actions/checkout@v2
+
+      - name: Instala o Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Instala o poetry
+        uses: Gr1N/setup-poetry@v4
+
+      - name: Instala as dependências
+        run: poetry install
 
       - name: Executa os testes unitários
         run: poetry run pytest
