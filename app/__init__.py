@@ -2,6 +2,8 @@
 
 from flask import Flask
 
+from .calc import soma
+
 
 def create_app():
     """Constroi a aplicação."""
@@ -9,7 +11,6 @@ def create_app():
 
     @app.get("/soma/<int:x>/<int:y>")
     def home(x, y):
-        # return str(soma(x, y))
-        return f"blah {x} e {y}"
+        return str(soma(x, y))
 
     return app
