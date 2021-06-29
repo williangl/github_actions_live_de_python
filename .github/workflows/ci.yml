@@ -1,0 +1,37 @@
+name: Integração Contínua
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+
+jobs:
+  executa_linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Realiza o checkout
+        uses: actions/checkout@v2
+
+      - name: Instala o Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Instala o poetry
+        uses: Gr1N/setup-poetry@v4
+
+      - name: Instala as dependências
+        run: poetry install
+
+      - name: Excuta o black
+        run: poetry run black --check app
+
+      - name: Excuta o isort
+        run: poetry run isort --check app
+
+      - name: Excuta o pydocstyle
+        run: poetry run pydocstyle app
+
+      - name: Executa os testes unitários
+        run: poetry run pytest
