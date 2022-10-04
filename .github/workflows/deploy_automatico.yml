@@ -4,8 +4,7 @@ on:
   workflow_run:
     workflows: ["Integração Contínua"]
     branches: [main]
-    type:
-      - completed
+    types: [completed]
 
 jobs:
   deploy_app:
